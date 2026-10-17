@@ -1,0 +1,975 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Satvik Gajula | Programmer Analyst</title>
+  <meta name="description" content="Portfolio of Satvik Gajula - Programmer Analyst at Cognizant & M.Tech AIML Student at BITS Pilani." />
+  
+  <!-- Google Fonts & Tailwind CSS -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+            mono: ['JetBrains Mono', 'monospace'],
+          },
+          colors: {
+            brand: {
+              50: '#f0fdf4',
+              100: '#dcfce7',
+              500: '#22c55e',
+              600: '#16a34a',
+              accent: '#3b82f6',
+            }
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    /* High Contrast CSS Variables for Light & Dark Themes */
+    :root {
+      --bg-primary: #f8fafc;
+      --bg-secondary: #ffffff;
+      --bg-card: #ffffff;
+      --border-color: #cbd5e1;
+      --text-main: #0f172a;        /* High Contrast Dark Text for Light Theme */
+      --text-muted: #334155;       /* Muted Dark Gray for Subtitles */
+      --text-accent: #2563eb;
+    }
+
+    .dark {
+      --bg-primary: #090d16;
+      --bg-secondary: #0f172a;
+      --bg-card: #1e293b;
+      --border-color: #334155;
+      --text-main: #f8fafc;        /* High Contrast White/Slate for Dark Theme */
+      --text-muted: #94a3b8;       /* Muted Light Gray for Subtitles */
+      --text-accent: #60a5fa;
+    }
+
+    body {
+      background-color: var(--bg-primary);
+      color: var(--text-main);
+      font-family: 'Inter', sans-serif;
+      transition: background-color 0.2s ease, color 0.2s ease;
+    }
+
+    .card-surface {
+      background-color: var(--bg-card);
+      border: 1px solid var(--border-color);
+    }
+
+    .text-main { color: var(--text-main) !important; }
+    .text-muted { color: var(--text-muted) !important; }
+
+    /* Explicit Light Mode Override Rules */
+    html:not(.dark) .text-main,
+    html:not(.dark) h1,
+    html:not(.dark) h2,
+    html:not(.dark) h3,
+    html:not(.dark) h4,
+    html:not(.dark) .hero-text-fix {
+      color: #0f172a !important;
+    }
+
+    html:not(.dark) .badge-bg-fix {
+      background-color: #e2e8f0 !important;
+      border-color: #cbd5e1 !important;
+      color: #0f172a !important;
+    }
+
+    /* Custom Glassmorphism Header */
+    .glass-nav {
+      background-color: rgba(15, 23, 42, 0.85);
+      backdrop-filter: blur(12px);
+    }
+    html:not(.dark) .glass-nav {
+      background-color: rgba(255, 255, 255, 0.9);
+    }
+
+    /* Elevated, polished contact cards */
+    .contact-cards { position: relative; }
+    .contact-cards::before {
+      content: "";
+      position: absolute;
+      inset: 12% -8% -8%;
+      z-index: -1;
+      background: radial-gradient(ellipse at center, rgba(59,130,246,.16), transparent 68%);
+      filter: blur(22px);
+      pointer-events: none;
+    }
+    .contact-card {
+      position: relative;
+      overflow: hidden;
+      border-color: rgba(100,116,139,.28);
+      box-shadow: 0 8px 24px rgba(2,6,23,.06);
+      transition: transform .25s ease, border-color .25s ease, box-shadow .25s ease, background-color .25s ease;
+    }
+    .contact-card::before {
+      content: "";
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, #3b82f6, #6366f1, transparent);
+      opacity: .65;
+    }
+    .contact-card:hover {
+      transform: translateY(-3px);
+      border-color: rgba(59,130,246,.65);
+      box-shadow: 0 14px 32px rgba(37,99,235,.12);
+    }
+    .contact-card > div:first-child > div:first-child,
+    .contact-link > div:first-child {
+      transition: transform .25s ease, background-color .25s ease;
+    }
+    .contact-card:hover > div:first-child > div:first-child,
+    .contact-link:hover > div:first-child {
+      transform: scale(1.06);
+      background-color: rgba(59,130,246,.18);
+    }
+    .contact-link { text-decoration: none; }
+    .contact-link:focus-visible, .contact-card button:focus-visible {
+      outline: 2px solid #60a5fa;
+      outline-offset: 4px;
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .contact-card, .contact-card > div:first-child > div:first-child, .contact-link > div:first-child { transition: none; }
+      .contact-card:hover { transform: none; }
+    }
+
+    /* Portfolio-wide visual refresh */
+    html { scroll-behavior: smooth; scroll-padding-top: 6rem; }
+    body {
+      background-image: radial-gradient(ellipse at 12% 4%, rgba(59,130,246,.11), transparent 34%),
+                        radial-gradient(ellipse at 88% 24%, rgba(99,102,241,.08), transparent 30%);
+      background-attachment: fixed;
+    }
+    .dark body { background-color: var(--bg-primary); }
+    main { position: relative; }
+    main > section:not(#hero):not(#contact) { position: relative; }
+    main > section:not(#hero):not(#contact)::before {
+      content: ""; display: block; width: 3rem; height: 3px; margin-bottom: 1.15rem;
+      border-radius: 999px; background: linear-gradient(90deg,#3b82f6,#818cf8,#34d399); opacity: .8;
+    }
+    #hero {
+      position: relative; isolation: isolate; overflow: hidden; border-radius: 2rem;
+      padding: clamp(2rem, 5vw, 4.5rem) !important;
+      border: 1px solid rgba(100,116,139,.28);
+      background: linear-gradient(135deg, rgba(30,41,59,.72), rgba(15,23,42,.42) 55%, rgba(30,64,175,.13));
+      box-shadow: 0 24px 80px rgba(2,6,23,.12);
+    }
+    #hero::before { content:""; position:absolute; width:24rem; height:24rem; right:-7rem; top:-9rem; z-index:-1; border-radius:50%; background:radial-gradient(circle,rgba(59,130,246,.2),rgba(99,102,241,.06) 48%,transparent 70%); }
+    #hero::after { content:""; position:absolute; inset:0; z-index:-1; opacity:.15; pointer-events:none; background-image:linear-gradient(rgba(148,163,184,.15) 1px,transparent 1px),linear-gradient(90deg,rgba(148,163,184,.15) 1px,transparent 1px); background-size:34px 34px; mask-image:linear-gradient(90deg,black,transparent 85%); }
+    html:not(.dark) #hero { background:linear-gradient(135deg,rgba(255,255,255,.96),rgba(239,246,255,.94) 65%,rgba(238,242,255,.88)); box-shadow:0 24px 70px rgba(37,99,235,.08); }
+    #hero h1 { letter-spacing:-.055em; line-height:1.06; }
+    #hero h1 .bg-clip-text { filter: drop-shadow(0 8px 24px rgba(59,130,246,.13)); }
+    #hero .badge-bg-bg-fix { box-shadow: inset 0 0 0 1px rgba(59,130,246,.06); }
+    #hero a[href="#projects"], #hero a[download] { border-radius: .9rem; transition: transform .22s ease, box-shadow .22s ease, border-color .22s ease; }
+    #hero a[href="#projects"]:hover, #hero a[download]:hover { transform:translateY(-2px); box-shadow:0 12px 28px rgba(37,99,235,.18); }
+    h2 + h3 { letter-spacing:-.035em; }
+    main > section:not(#hero):not(#contact) h3 { letter-spacing:-.035em; }
+    .card-surface { border-radius: 1.15rem; box-shadow: 0 8px 28px rgba(2,6,23,.035); transition: border-color .22s ease, box-shadow .22s ease, transform .22s ease, background-color .22s ease; }
+    .dark .card-surface { box-shadow: 0 12px 30px rgba(0,0,0,.08); }
+    #experience-container .card-surface,
+    #projects-grid .card-surface,
+    #skills-container .card-surface,
+    #education-container .card-surface,
+    #certifications-container .card-surface,
+    #leadership-container .card-surface { position:relative; overflow:hidden; }
+    #experience-container .card-surface::before,
+    #projects-grid .card-surface::before,
+    #skills-container .card-surface::before,
+    #education-container .card-surface::before,
+    #certifications-container .card-surface::before,
+    #leadership-container .card-surface::before {
+      content:""; position:absolute; top:0; left:1.4rem; right:1.4rem; height:1px;
+      background:linear-gradient(90deg,transparent,rgba(96,165,250,.55),transparent);
+    }
+    #projects-grid > div:hover, #experience-container > div:hover, #skills-container > div:hover,
+    #education-container > div:hover, #certifications-container > div:hover,
+    #leadership-container .card-surface:hover { transform:translateY(-4px); border-color:rgba(59,130,246,.55); box-shadow:0 18px 42px rgba(37,99,235,.10); }
+    #projects-grid h4 { letter-spacing:-.02em; }
+    #projects-grid button { border:1px solid transparent; }
+    #projects-grid button:hover { box-shadow:0 8px 20px rgba(37,99,235,.18); }
+    #project-filters button { border-radius:999px; padding:.55rem .9rem; }
+    #project-search, #skill-search { border-radius:.9rem; box-shadow:0 6px 22px rgba(2,6,23,.035); transition:border-color .2s ease, box-shadow .2s ease; }
+    #project-search:focus, #skill-search:focus { border-color:#60a5fa; box-shadow:0 0 0 4px rgba(59,130,246,.13); }
+    #skills-container span, #projects-grid span { transition:background-color .2s ease, color .2s ease; }
+    #skills-container span:hover { background-color:rgba(59,130,246,.13); color:#60a5fa; }
+    header { box-shadow:0 8px 30px rgba(2,6,23,.045); }
+    header nav a { position:relative; }
+    header nav a::after { content:""; position:absolute; left:.75rem; right:.75rem; bottom:.25rem; height:2px; border-radius:999px; transform:scaleX(0); transform-origin:left; background:linear-gradient(90deg,#3b82f6,#818cf8); transition:transform .2s ease; }
+    header nav a:hover::after, header nav a:focus-visible::after { transform:scaleX(1); }
+    footer { background-image:linear-gradient(90deg,rgba(59,130,246,.035),transparent,rgba(16,185,129,.035)); }
+    #project-modal > div { border-radius:1.5rem; box-shadow:0 30px 100px rgba(0,0,0,.35); }
+    a:focus-visible, button:focus-visible { outline:2px solid #60a5fa; outline-offset:3px; }
+    ::selection { background:rgba(59,130,246,.3); }
+    @media (max-width: 640px) {
+      main { padding-top:1.5rem !important; gap:4rem !important; }
+      #hero { border-radius:1.35rem; padding:1.5rem !important; }
+      #hero h1 { font-size:clamp(2.4rem,12vw,3.6rem); }
+      #hero .flex.flex-wrap.items-center.gap-4 { align-items:stretch; }
+      #hero a[href="#projects"], #hero a[download] { text-align:center; justify-content:center; }
+      #project-filters { gap:.4rem; }
+      #project-filters button { padding:.5rem .7rem; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior:auto; }
+      *, *::before, *::after { animation-duration:.01ms !important; animation-iteration-count:1 !important; transition-duration:.01ms !important; }
+    }
+
+    /* Modal Backdrop */
+    .modal-backdrop {
+      background-color: rgba(0, 0, 0, 0.75);
+      backdrop-filter: blur(4px);
+    }
+
+
+    /* Premium v2 visual system: stronger depth, hierarchy and motion */
+    :root { --brand-blue:#3b82f6; --brand-violet:#818cf8; --brand-mint:#34d399; }
+    body { line-height: 1.7; }
+    body::before {
+      content:""; position:fixed; inset:0; z-index:-1; pointer-events:none; opacity:.22;
+      background-image: radial-gradient(rgba(148,163,184,.22) .7px, transparent .7px);
+      background-size: 24px 24px; mask-image: linear-gradient(to bottom, black, transparent 78%);
+    }
+    main { isolation:isolate; }
+    main > section { position:relative; animation: rise-in .7s both; }
+    main > section:nth-of-type(2) { animation-delay:.04s; }
+    main > section:nth-of-type(3) { animation-delay:.08s; }
+    main > section:nth-of-type(4) { animation-delay:.12s; }
+    @keyframes rise-in { from { opacity:0; transform:translateY(12px); } to { opacity:1; transform:translateY(0); } }
+    header { box-shadow: 0 8px 30px rgba(2,6,23,.08); }
+    .glass-nav { border-color:rgba(148,163,184,.18); }
+    nav a { position:relative; }
+    nav a::after { content:""; position:absolute; left:12px; right:12px; bottom:4px; height:2px; border-radius:2px; background:linear-gradient(90deg,#3b82f6,#818cf8); transform:scaleX(0); transform-origin:left; transition:transform .22s ease; }
+    nav a:hover::after, nav a:focus-visible::after { transform:scaleX(1); }
+    #hero { border:1px solid rgba(100,116,139,.18); border-radius:30px; padding:clamp(1.4rem,4vw,3.5rem); overflow:hidden; background:linear-gradient(135deg,rgba(59,130,246,.075),transparent 42%),linear-gradient(315deg,rgba(16,185,129,.055),transparent 38%); }
+    #hero::after { content:""; position:absolute; width:340px; height:340px; right:-140px; top:-170px; border-radius:50%; border:1px solid rgba(96,165,250,.17); box-shadow:0 0 0 35px rgba(96,165,250,.025),0 0 0 70px rgba(96,165,250,.02); pointer-events:none; }
+    #hero h1 { letter-spacing:-.055em; line-height:1.08; }
+    #hero h1 .bg-clip-text { filter:drop-shadow(0 8px 22px rgba(59,130,246,.13)); }
+    #hero a, button { transition:transform .2s ease, box-shadow .2s ease, background-color .2s ease, border-color .2s ease; }
+    #hero a:hover { transform:translateY(-2px); }
+    main > section > div:first-child h3 { letter-spacing:-.035em; }
+    main > section > div:first-child h2 { letter-spacing:.18em; }
+    .card-surface { border-radius:18px; box-shadow:0 5px 20px rgba(2,6,23,.035); transition:border-color .22s ease, transform .22s ease, box-shadow .22s ease; }
+    .dark .card-surface { box-shadow:0 10px 28px rgba(0,0,0,.10); }
+    #experience-container .card-surface, #education-container .card-surface, #certifications-container .card-surface, #leadership-container .card-surface { position:relative; overflow:hidden; }
+    #experience-container .card-surface::before, #education-container .card-surface::before, #certifications-container .card-surface::before { content:""; position:absolute; left:0; top:0; bottom:0; width:3px; background:linear-gradient(to bottom,#3b82f6,#818cf8,#34d399); opacity:.8; }
+    #projects-grid > div { min-height:100%; border-radius:22px; position:relative; overflow:hidden; background-image:linear-gradient(145deg,rgba(59,130,246,.045),transparent 45%); }
+    #projects-grid > div:hover { transform:translateY(-5px); border-color:rgba(96,165,250,.65); box-shadow:0 20px 42px rgba(37,99,235,.12); }
+    #projects-grid > div h4 { letter-spacing:-.02em; }
+    #projects-grid button { border:1px solid rgba(148,163,184,.14); }
+    #project-filters button { border-radius:999px; padding:.55rem 1rem; }
+    input[type="text"] { border-radius:14px; min-height:44px; }
+    input[type="text"]:focus { box-shadow:0 0 0 4px rgba(59,130,246,.12); }
+    #skills-container .card-surface:hover, #education-container .card-surface:hover, #certifications-container .card-surface:hover { transform:translateY(-3px); border-color:rgba(96,165,250,.5); }
+    #skills-container span { border:1px solid rgba(148,163,184,.10); }
+    #project-modal > div { box-shadow:0 30px 100px rgba(0,0,0,.35); }
+    footer { background-image:linear-gradient(90deg,rgba(59,130,246,.04),transparent,rgba(16,185,129,.04)); }
+    a:focus-visible, button:focus-visible, input:focus-visible { outline:2px solid #60a5fa; outline-offset:3px; }
+    @media (max-width: 640px) {
+      main { padding-top:1.25rem; }
+      main > section { scroll-margin-top:5.5rem; }
+      #hero { border-radius:22px; }
+      #hero::after { width:200px; height:200px; right:-110px; top:-100px; }
+      #hero .ml-auto { margin-left:0; }
+      #projects-grid > div:hover, #skills-container .card-surface:hover, #education-container .card-surface:hover { transform:none; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { scroll-behavior:auto !important; animation-duration:.01ms !important; animation-iteration-count:1 !important; transition-duration:.01ms !important; }
+    }
+
+  </style>
+</head>
+<body class="min-h-screen flex flex-col selection:bg-blue-500 selection:text-white">
+
+  <!-- TOP NAVIGATION BAR -->
+  <header class="sticky top-0 z-40 w-full glass-nav border-b border-slate-200 dark:border-slate-800 transition-colors">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+      
+      <!-- Brand Logo -->
+      <a href="#hero" class="flex items-center gap-3 group">
+        <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-blue-600 via-indigo-600 to-emerald-500 flex items-center justify-center text-white font-bold font-mono text-lg shadow-md shadow-blue-500/20 group-hover:scale-105 transition-transform">
+          SG
+        </div>
+        <div class="flex flex-col">
+          <span class="font-bold text-slate-900 dark:text-white tracking-tight leading-none text-base">Satvik Gajula</span>
+          <span class="text-xs text-slate-600 dark:text-slate-400 font-mono mt-1">Programmer Analyst @ Cognizant</span>
+        </div>
+      </a>
+
+      <!-- Desktop Nav Links -->
+      <nav class="hidden md:flex items-center gap-1 font-medium text-sm">
+        <a href="#about" class="px-3 py-2 rounded-lg text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors">About</a>
+        <a href="#experience" class="px-3 py-2 rounded-lg text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors">Experience</a>
+        <a href="#projects" class="px-3 py-2 rounded-lg text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors">Projects</a>
+        <a href="#skills" class="px-3 py-2 rounded-lg text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors">Skills</a>
+        <a href="#education" class="px-3 py-2 rounded-lg text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors">Education</a>
+        <a href="#certifications" class="px-3 py-2 rounded-lg text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors">Certifications</a>
+        <a href="#leadership" class="px-3 py-2 rounded-lg text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors">Leadership</a>
+        <a href="#contact" class="px-3 py-2 rounded-lg text-blue-600 dark:text-blue-400 font-semibold hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors">Contact</a>
+      </nav>
+
+      <!-- Right Action Controls -->
+      <div class="flex items-center gap-3">
+        <!-- Dark/Light Theme Toggle -->
+        <button id="theme-toggle" onclick="toggleTheme()" aria-label="Toggle Theme" class="p-2.5 rounded-xl border border-slate-200 dark:border-slate-800 hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white transition-colors">
+          <svg id="theme-icon-sun" class="w-5 h-5 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path></svg>
+          <svg id="theme-icon-moon" class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path></svg>
+        </button>
+
+        <!-- Download Resume Button -->
+        <a href="./resume.pdf" download class="hidden sm:flex items-center gap-2 px-4 py-2 rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-medium text-sm shadow-md shadow-blue-500/20 transition-all">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
+          <span>Resume</span>
+        </a>
+      </div>
+
+    </div>
+  </header>
+
+  <!-- MAIN PORTFOLIO CONTENT -->
+  <main class="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-10 space-y-20">
+
+    <!-- HERO SECTION -->
+    <section id="hero" class="pt-6 pb-10 border-b border-slate-200 dark:border-slate-800">
+      <div class="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-10">
+        <div class="max-w-3xl space-y-6">
+          
+          <!-- Role Badge -->
+          <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full badge-bg-bg-fix bg-slate-200/90 dark:bg-blue-500/10 border border-slate-300 dark:border-blue-500/20 text-slate-900 dark:text-blue-400 font-mono text-xs font-semibold">
+            <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+            <span>Programmer Analyst @ Cognizant &nbsp;|&nbsp; M.Tech AIML @ BITS Pilani</span>
+          </div>
+
+          <!-- Hero Main Title -->
+          <h1 class="text-4xl sm:text-6xl font-extrabold tracking-tight text-slate-900 dark:text-white leading-tight">
+            <span class="hero-text-fix">Hi, I'm</span> <span class="bg-gradient-to-r from-blue-600 via-indigo-500 to-emerald-400 bg-clip-text text-transparent">Satvik Gajula</span>
+          </h1>
+
+          <!-- Headline Quote -->
+          <p class="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white tracking-tight">
+            "Building Software. Exploring Intelligence. Solving Real Problems."
+          </p>
+
+          <!-- Authentic Positioning Statement -->
+          <p class="text-base sm:text-lg text-slate-700 dark:text-slate-300 leading-relaxed">
+            Software engineering professional with experience in enterprise application support and troubleshooting, a background in Computer Science, and ongoing postgraduate studies in Artificial Intelligence and Machine Learning. Interested in building reliable software and exploring practical applications of AI.
+          </p>
+
+          <!-- CTAs and Social Links -->
+          <div class="flex flex-wrap items-center gap-4 pt-2">
+            <a href="#projects" class="px-6 py-3 rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-semibold shadow-lg shadow-blue-500/25 transition-all">
+              Explore Projects
+            </a>
+            <a href="./resume.pdf" download class="px-6 py-3 rounded-xl card-surface hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-900 dark:text-white font-semibold transition-all">
+              Download Resume
+            </a>
+            
+            <div class="flex items-center gap-2 ml-auto sm:ml-0">
+              <a href="https://www.linkedin.com/in/satvik-gajula-0665b9254/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn Profile" class="p-3 rounded-xl card-surface hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-600 dark:text-slate-400 hover:text-blue-500 transition-colors">
+                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+              </a>
+              <a href="https://github.com" id="github-link" target="_blank" rel="noopener noreferrer" aria-label="GitHub Profile" class="p-3 rounded-xl card-surface hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition-colors">
+                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+              </a>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ABOUT SECTION -->
+    <section id="about" class="scroll-mt-24">
+      <div class="space-y-4">
+        <h2 class="text-xs font-mono uppercase tracking-widest text-blue-600 dark:text-blue-400 font-semibold">About Me</h2>
+        <h3 class="text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white">Technical Foundation & Professional Journey</h3>
+        <p class="text-base text-slate-700 dark:text-slate-300 leading-relaxed max-w-4xl">
+          I hold a Bachelor of Technology in Computer Science and Engineering from Anurag University (CGPA 8.71/10) and am currently expanding my technical horizon through an M.Tech in Artificial Intelligence and Machine Learning from BITS Pilani (WILP). As a Programmer Analyst at Cognizant working in the Guidewire InsuranceSuite domain, I engage directly in enterprise application troubleshooting, debugging, operational support, and target technical changes. My passion lies at the intersection of robust backend software architecture and modern AI capabilities.
+        </p>
+      </div>
+    </section>
+
+    <!-- PROFESSIONAL EXPERIENCE SECTION -->
+    <section id="experience" class="scroll-mt-24 space-y-6">
+      <div>
+        <h2 class="text-xs font-mono uppercase tracking-widest text-blue-600 dark:text-blue-400 font-semibold">Career Timeline</h2>
+        <h3 class="text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white">Professional Experience</h3>
+      </div>
+      <div id="experience-container" class="space-y-6"></div>
+    </section>
+
+    <!-- FEATURED PROJECTS SECTION -->
+    <section id="projects" class="scroll-mt-24 space-y-6">
+      <div class="flex flex-col md:flex-row md:items-end justify-between gap-4">
+        <div>
+          <h2 class="text-xs font-mono uppercase tracking-widest text-blue-600 dark:text-blue-400 font-semibold">Portfolio & Prototypes</h2>
+          <h3 class="text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white">Featured Projects</h3>
+        </div>
+        
+        <!-- Category Filter Buttons -->
+        <div id="project-filters" class="flex flex-wrap gap-2"></div>
+      </div>
+
+      <!-- Search Input -->
+      <div class="relative max-w-md">
+        <input type="text" id="project-search" placeholder="Search projects or technologies..." oninput="filterProjects()" class="w-full px-4 py-2.5 rounded-xl card-surface text-slate-900 dark:text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm">
+      </div>
+
+      <!-- Projects Grid -->
+      <div id="projects-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"></div>
+    </section>
+
+    <!-- SKILLS SECTION -->
+    <section id="skills" class="scroll-mt-24 space-y-6">
+      <div>
+        <h2 class="text-xs font-mono uppercase tracking-widest text-blue-600 dark:text-blue-400 font-semibold">Technical Stack</h2>
+        <h3 class="text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white">Skills & Technologies</h3>
+      </div>
+
+      <div class="relative max-w-md">
+        <input type="text" id="skill-search" placeholder="Filter technologies (e.g. Java, Python, Azure)..." oninput="filterSkills()" class="w-full px-4 py-2.5 rounded-xl card-surface text-slate-900 dark:text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm">
+      </div>
+
+      <div id="skills-container" class="grid grid-cols-1 md:grid-cols-2 gap-6"></div>
+    </section>
+
+    <!-- EDUCATION SECTION -->
+    <section id="education" class="scroll-mt-24 space-y-6">
+      <div>
+        <h2 class="text-xs font-mono uppercase tracking-widest text-blue-600 dark:text-blue-400 font-semibold">Academic Qualifications</h2>
+        <h3 class="text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white">Education Timeline</h3>
+      </div>
+      <div id="education-container" class="grid grid-cols-1 md:grid-cols-2 gap-6"></div>
+    </section>
+
+    <!-- CERTIFICATIONS SECTION -->
+    <section id="certifications" class="scroll-mt-24 space-y-6">
+      <div>
+        <h2 class="text-xs font-mono uppercase tracking-widest text-blue-600 dark:text-blue-400 font-semibold">Verified Credentials</h2>
+        <h3 class="text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white">Certifications</h3>
+      </div>
+      <div id="certifications-container" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4"></div>
+    </section>
+
+    <!-- LEADERSHIP SECTION -->
+    <section id="leadership" class="scroll-mt-24 space-y-6">
+      <div>
+        <h2 class="text-xs font-mono uppercase tracking-widest text-blue-600 dark:text-blue-400 font-semibold">Community & Impact</h2>
+        <h3 class="text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white">Leadership Roles</h3>
+      </div>
+      <div id="leadership-container"></div>
+    </section>
+
+    
+
+      <section id="contact" class="scroll-mt-24 py-10 sm:py-14">
+        <div class="contact-heading text-center mb-8 sm:mb-10">
+          <span class="inline-flex items-center gap-2 rounded-full border border-blue-500/20 bg-blue-500/10 px-3 py-1.5 text-[10px] font-mono font-semibold uppercase tracking-[0.2em] text-blue-600 dark:text-blue-400">
+            <span class="h-1.5 w-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
+            Contact
+          </span>
+          <h2 class="mt-4 text-3xl sm:text-4xl font-extrabold tracking-tight text-slate-900 dark:text-white">Let's connect<span class="text-blue-500">.</span></h2>
+          <p class="mx-auto mt-3 max-w-lg text-sm sm:text-base leading-relaxed text-slate-600 dark:text-slate-400">Have an opportunity or want to discuss technology? Find me through any of the channels below.</p>
+        </div>
+        <div class="flex justify-center w-full">
+        <!-- Contact Info Cards -->
+        <div class="contact-cards w-full max-w-lg space-y-4">
+          <!-- Location -->
+          <div class="contact-card card-surface p-5 sm:p-6 rounded-2xl flex items-center gap-4">
+            <div class="w-10 h-10 rounded-xl bg-blue-500/10 text-blue-600 dark:text-blue-400 flex items-center justify-center shrink-0">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+            </div>
+            <div>
+              <span class="text-[10px] font-mono text-slate-500 uppercase">Location</span>
+              <p class="text-sm font-semibold text-slate-900 dark:text-white">Hyderabad, Telangana, India</p>
+            </div>
+          </div>
+
+          <!-- Email -->
+          <div class="contact-card card-surface p-5 sm:p-6 rounded-2xl flex items-center justify-between gap-4">
+            <div class="flex items-center gap-4">
+              <div class="w-10 h-10 rounded-xl bg-blue-500/10 text-blue-600 dark:text-blue-400 flex items-center justify-center shrink-0">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
+              </div>
+              <div class="overflow-hidden">
+                <span class="text-[10px] font-mono text-slate-500 uppercase">Email</span>
+                <p id="contact-email" class="text-xs font-mono font-semibold text-slate-900 dark:text-white truncate">saisatvik26@gmail.com</p>
+              </div>
+            </div>
+            <button id="copy-email-button" type="button" onclick="copyEmail()" aria-label="Copy email address" title="Copy email address" class="w-10 h-10 rounded-xl bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:text-blue-600 dark:hover:text-blue-400 flex items-center justify-center shrink-0 transition-all focus:outline-none focus:ring-2 focus:ring-blue-500" >
+              <svg id="copy-email-icon" class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2" stroke-width="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1" stroke-width="2" stroke-linecap="round"/></svg>
+            </button>
+          </div>
+
+          <!-- LinkedIn: single valid, fully clickable card -->
+          <a
+            href="https://www.linkedin.com/in/satvik-gajula-0665b9254/"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Visit Satvik Gajula's LinkedIn profile"
+            class="contact-card contact-link card-surface p-5 sm:p-6 rounded-2xl flex items-center gap-4 group"
+          >
+            <div class="w-10 h-10 rounded-xl bg-blue-500/10 text-blue-600 dark:text-blue-400 flex items-center justify-center shrink-0">
+              <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+            </div>
+            <div class="min-w-0">
+              <span class="block text-[10px] font-mono text-slate-500 uppercase tracking-wider">LinkedIn</span>
+              <span class="block text-sm font-semibold text-slate-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">Satvik Gajula</span>
+            </div>
+            <svg class="w-4 h-4 ml-auto text-slate-400 group-hover:text-blue-500 transition-colors shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 17 17 7M7 7h10v10"/></svg>
+          </a>
+        </div>
+        </div>
+      </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="border-t border-slate-200 dark:border-slate-800 py-8 bg-slate-50 dark:bg-slate-900/50 mt-20">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4">
+      <p class="text-xs text-slate-600 dark:text-slate-400">
+        © 2026 Satvik Gajula. Built with clean HTML5 & Vanilla JavaScript. Designed for high performance and easy maintenance.
+      </p>
+      <a href="#hero" class="text-xs font-mono text-blue-600 dark:text-blue-400 hover:underline">Back to Top ↑</a>
+    </div>
+  </footer>
+
+  <!-- PROJECT DETAILS MODAL -->
+  <div id="project-modal" class="fixed inset-0 z-50 hidden modal-backdrop flex items-center justify-center p-4 overflow-y-auto">
+    <div class="card-surface rounded-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto p-6 sm:p-8 space-y-6 relative shadow-2xl">
+      <button onclick="closeModal()" class="absolute top-6 right-6 text-slate-500 hover:text-slate-900 dark:hover:text-white p-2 rounded-xl border border-slate-200 dark:border-slate-800">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+      </button>
+      <div id="modal-content"></div>
+    </div>
+  </div>
+
+  <!-- CENTRALIZED PORTFOLIO DATA & RENDERING SCRIPT -->
+  <script>
+    const portfolioData = {
+      profile: {
+        name: "Satvik Gajula",
+        title: "Programmer Analyst",
+        company: "Cognizant",
+        degree: "M.Tech AIML Student @ BITS Pilani",
+        location: "Hyderabad, Telangana, India",
+        Period: "June 2025 – Present",
+        linkedin: "https://www.linkedin.com/in/satvik-gajula-0665b9254/",
+        github: "https://github.com",
+        email: "saisatvik26@gmail.com"
+      },
+      experience: [
+        {
+          id: "exp-1",
+          company: "Cognizant",
+          role: "Programmer Analyst",
+          period: "June 2025 – Present",
+          domain: "Guidewire InsuranceSuite (ECOS Production Support)",
+          responsibilities: [
+            "Investigate and troubleshoot production support tickets involving insurance claims.",
+            "Analyze complex issues such as policy number mismatches and note deletion scenarios.",
+            "Assist with investigating reported application problems and identifying their root causes.",
+            "Support issue resolution, debugging, and operational application troubleshooting.",
+            "Perform limited targeted development and technical changes alongside production support.",
+            "Work with enterprise insurance applications and operational support workflows."
+          ]
+        }
+      ],
+      projects: [
+        {
+          id: "it-training",
+          title: "AI-Based IT Training System",
+          category: "AIML",
+          summary: "Conceptual web system designed to personalize learning pathways for technical training.",
+          problem: "Standardized technical curricula often lack personalized adaptation.",
+          solution: "Engineered web dashboard interface structured for adaptive lesson delivery.",
+          technologies: ["Python", "Flask", "React.js", "SQL"],
+          features: ["Adaptive content delivery", "Progress metrics tracking"],
+          githubUrl: "",
+          liveUrl: "",
+          featured: false
+        },
+        {
+          id: "malai-website",
+          title: "MALAI Club Website",
+          category: "Web",
+          summary: "Official technical web platform for Anurag University's Machine Learning and AI student club.",
+          problem: "Community event announcements and student workshop resources required a centralized hub.",
+          solution: "Developed a dynamic web portal presenting club workshops, events, and registrations.",
+          technologies: ["HTML", "CSS", "JavaScript", "React.js"],
+          features: ["Event showcase", "Community registration hub"],
+          githubUrl: "",
+          liveUrl: "",
+          featured: false
+        }, 
+        {
+          id: "criminal-vision",
+          title: "Criminal Detection Using Computer Vision",
+          category: "Computer Vision",
+          summary: "Computer vision exploration built during an OpenCV workshop focusing on image detection techniques.",
+          problem: "Exploring real-time facial feature extraction and pattern detection methodologies.",
+          solution: "Implemented OpenCV pipelines for image processing and structural pattern recognition.",
+          technologies: ["Python", "OpenCV", "Computer Vision"],
+          features: ["Image frame processing", "Feature extraction pipelines"],
+          githubUrl: "",
+          liveUrl: "",
+          featured: false
+        },
+        {
+          id: "hand-canvas",
+          title: "OpenCV Hand Canvas",
+          category: "Computer Vision",
+          summary: "Interactive digital drawing surface controlled via hand gestures captured by a webcam.",
+          problem: "Designing touchless human-computer interaction surfaces.",
+          solution: "Leveraged OpenCV for real-time hand landmark tracking and dynamic canvas rendering.",
+          technologies: ["Python", "OpenCV", "NumPy", "HCI"],
+          features: ["Real-time gesture recognition", "Virtual canvas drawing"],
+          githubUrl: "",
+          liveUrl: "",
+          featured: false
+        }
+      ],
+      skills: {
+        "Programming & Fundamentals": ["Java", "Python","C","Gosu","SQL", "Data Structures & Algorithms", "OOP", "Problem Solving"],
+        "Frontend & Web": ["HTML", "CSS", "JavaScript", "React.js", "Node.js"],
+        "Backend & Databases": ["Spring Boot", "JDBC", "REST API concepts", "MySQL", "Oracle SQL"],
+        "AI, ML & Computer Vision": ["Machine Learning", "Deep Learning", "NLP", "Computer Vision", "TensorFlow", "Keras", "Scikit-learn", "OpenCV", "NLTK"]
+     },
+      education: [
+        {
+          degree: "M.Tech in Artificial Intelligence & Machine Learning",
+          institution: "BITS Pilani — Work Integrated Learning Programmes (WILP)",
+          period: "Currently Pursuing",
+          type: "Ongoing Postgraduate Studies",
+          current: true
+        },
+        {
+          degree: "B.Tech in Computer Science and Engineering",
+          institution: "Anurag University",
+          period: "2021 – 2025",
+          score: "CGPA: 8.71 / 10",
+          current: false
+        },
+        {
+          degree: "Class XII (Intermediate)",
+          institution: "FIITJEE Junior College",
+          period: "Year: 2021",
+          score: "CGPA: 8.78 / 10",
+          current: false
+        },
+        {
+          degree: "Class X (Secondary)",
+          institution: "Delhi Public School",
+          period: "Year: 2019",
+          score: "CGPA: 9.27 / 10",
+          current: false
+        }
+      ],
+      certifications: [
+        {
+          title: "Microsoft Certified: Azure AI Engineer Associate",
+          code: "AI-102",
+          status: "Cleared",
+          issuer: "Microsoft"
+        },
+        {
+          title: "OCI 2025 Certified AI Foundations Associate",
+          issuer: "Oracle",
+          year: "2025"
+        },
+        {
+          title: "Full Stack Development with React & Node.js",
+          issuer: "GeeksforGeeks"
+        },
+        {
+          title: "Data Structures & Algorithms",
+          issuer: "Udemy"
+        }
+      ],
+      leadership: {
+        role: "President",
+        organization: "Machine Learning & Artificial Intelligence Club (MALAI), Anurag University",
+        period: "2023 – 2024",
+        events: [
+          "Drive Into Automation — OpenCV & TensorFlow Workshop (April 2023)",
+          "OpenCV Workshop — Criminal Detection Focus (April 2023)",
+          "Artificial Neural Networks Workshop (July 2023)",
+          "AI MedQuest Workshop & Hackathon (Aug–Sept 2023)",
+          "NLP Nexus Workshop (November 2023)",
+          "DAKSHA Techno-Cultural Fest AI Track (February 2024)"
+        ]
+      }
+    };
+
+    let activeCategory = "All Projects";
+
+    // Initialize Page Content
+    document.addEventListener("DOMContentLoaded", () => {
+      renderExperience();
+      renderProjects();
+      renderSkills();
+      renderEducation();
+      renderCertifications();
+      renderLeadership();
+    });
+
+    // Theme Toggle Handler
+    function toggleTheme() {
+      const html = document.documentElement;
+      const isDark = html.classList.contains('dark');
+      if (isDark) {
+        html.classList.remove('dark');
+        document.getElementById('theme-icon-sun').classList.remove('hidden');
+        document.getElementById('theme-icon-moon').classList.add('hidden');
+      } else {
+        html.classList.add('dark');
+        document.getElementById('theme-icon-sun').classList.add('hidden');
+        document.getElementById('theme-icon-moon').classList.remove('hidden');
+      }
+    }
+
+    // Render Experience
+    function renderExperience() {
+      const container = document.getElementById("experience-container");
+      container.innerHTML = portfolioData.experience.map(exp => `
+        <div class="card-surface p-6 sm:p-8 rounded-2xl space-y-4">
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-slate-200 dark:border-slate-800 pb-4">
+            <div>
+              <h4 class="text-xl font-bold text-slate-900 dark:text-white">${exp.company}</h4>
+              <p class="text-sm font-semibold text-blue-600 dark:text-blue-400">${exp.role} <span class="text-xs font-mono text-slate-500">(${exp.period})</span></p>
+            </div>
+            <span class="inline-block px-3 py-1 rounded-full bg-slate-100 dark:bg-slate-800 text-xs font-mono text-slate-600 dark:text-slate-300">${exp.domain}</span>
+          </div>
+          <ul class="space-y-2 text-sm text-slate-700 dark:text-slate-300">
+            ${exp.responsibilities.map(r => `<li class="flex items-start gap-2"><span class="text-blue-500 font-bold">•</span><span>${r}</span></li>`).join('')}
+          </ul>
+        </div>
+      `).join('');
+    }
+
+    // Render Projects
+    function renderProjects() {
+      const categories = ["All Projects", "AIML", "Computer Vision", "Web"];
+      const filterContainer = document.getElementById("project-filters");
+      
+      filterContainer.innerHTML = categories.map(cat => `
+        <button onclick="setCategory('${cat}')" class="px-3.5 py-1.5 rounded-xl text-xs font-medium transition-all ${activeCategory === cat ? 'bg-blue-600 text-white' : 'card-surface text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white'}">
+          ${cat}
+        </button>
+      `).join('');
+
+      filterProjects();
+    }
+
+    function setCategory(cat) {
+      activeCategory = cat;
+      renderProjects();
+    }
+
+    function filterProjects() {
+      const search = document.getElementById("project-search").value.toLowerCase();
+      const grid = document.getElementById("projects-grid");
+
+      const filtered = portfolioData.projects.filter(p => {
+        const matchesCategory = activeCategory === "All Projects" || p.category === activeCategory;
+        const matchesSearch = p.title.toLowerCase().includes(search) || 
+                              p.summary.toLowerCase().includes(search) || 
+                              p.technologies.some(t => t.toLowerCase().includes(search));
+        return matchesCategory && matchesSearch;
+      });
+
+      if (filtered.length === 0) {
+        grid.innerHTML = `<div class="col-span-full text-center py-12 text-slate-500 font-mono text-sm">No matching projects found.</div>`;
+        return;
+      }
+
+      grid.innerHTML = filtered.map(p => `
+        <div class="card-surface rounded-2xl p-6 flex flex-col justify-between space-y-4 hover:border-blue-500/50 transition-all group">
+          <div class="space-y-3">
+            <div class="flex items-center justify-between gap-2">
+              <span class="text-xs font-mono text-blue-600 dark:text-blue-400">${p.category}</span>
+              ${p.featured ? '<span class="px-2 py-0.5 rounded-md bg-amber-500/10 text-amber-600 dark:text-amber-500 font-mono text-[10px]">Featured</span>' : ''}
+            </div>
+            <h4 class="text-lg font-bold text-slate-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">${p.title}</h4>
+            <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">${p.summary}</p>
+          </div>
+
+          <div class="space-y-4">
+            <div class="flex flex-wrap gap-1.5">
+              ${p.technologies.map(t => `<span class="px-2 py-0.5 rounded-md bg-slate-100 dark:bg-slate-800 text-[11px] font-mono text-slate-600 dark:text-slate-300">${t}</span>`).join('')}
+            </div>
+            <button onclick='openModal("${p.id}")' class="w-full py-2 rounded-xl bg-slate-100 dark:bg-slate-800 hover:bg-blue-600 hover:text-white text-slate-900 dark:text-white font-medium text-xs transition-colors">
+              Detailed Project View
+            </button>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    // Render Modal
+    function openModal(id) {
+      const project = portfolioData.projects.find(p => p.id === id);
+      if (!project) return;
+
+      const content = document.getElementById("modal-content");
+      content.innerHTML = `
+        <div class="space-y-4">
+          <span class="text-xs font-mono text-blue-600 dark:text-blue-400">${project.category}</span>
+          <h3 class="text-2xl font-bold text-slate-900 dark:text-white">${project.title}</h3>
+          
+          <div class="space-y-2">
+            <h5 class="text-xs font-mono uppercase tracking-wider text-slate-500 font-semibold">Problem Statement</h5>
+            <p class="text-sm text-slate-800 dark:text-slate-200 leading-relaxed">${project.problem}</p>
+          </div>
+
+          <div class="space-y-2">
+            <h5 class="text-xs font-mono uppercase tracking-wider text-slate-500 font-semibold">Solution Overview</h5>
+            <p class="text-sm text-slate-800 dark:text-slate-200 leading-relaxed">${project.solution}</p>
+          </div>
+
+          <div class="space-y-2">
+            <h5 class="text-xs font-mono uppercase tracking-wider text-slate-500 font-semibold">Key Features</h5>
+            <ul class="space-y-1 text-sm text-slate-600 dark:text-slate-300">
+              ${project.features.map(f => `<li class="flex items-center gap-2"><span class="text-blue-500">•</span> ${f}</li>`).join('')}
+            </ul>
+          </div>
+
+          <div class="space-y-2">
+            <h5 class="text-xs font-mono uppercase tracking-wider text-slate-500 font-semibold">Technologies</h5>
+            <div class="flex flex-wrap gap-1.5">
+              ${project.technologies.map(t => `<span class="px-2.5 py-1 rounded-lg bg-slate-100 dark:bg-slate-800 text-xs font-mono text-slate-900 dark:text-white">${t}</span>`).join('')}
+            </div>
+          </div>
+        </div>
+      `;
+
+      document.getElementById("project-modal").classList.remove("hidden");
+    }
+
+    function closeModal() {
+      document.getElementById("project-modal").classList.add("hidden");
+    }
+
+    // Render Skills
+    function renderSkills() {
+      filterSkills();
+    }
+
+    function filterSkills() {
+      const search = document.getElementById("skill-search").value.toLowerCase();
+      const container = document.getElementById("skills-container");
+
+      const categories = Object.keys(portfolioData.skills);
+      let html = '';
+
+      categories.forEach(cat => {
+        const skills = portfolioData.skills[cat].filter(s => s.toLowerCase().includes(search));
+        if (skills.length > 0) {
+          html += `
+            <div class="card-surface p-6 rounded-2xl space-y-3">
+              <h4 class="text-sm font-mono font-bold text-blue-600 dark:text-blue-400">${cat}</h4>
+              <div class="flex flex-wrap gap-2">
+                ${skills.map(s => `<span class="px-3 py-1 rounded-xl bg-slate-100 dark:bg-slate-800 text-xs font-medium text-slate-900 dark:text-white">${s}</span>`).join('')}
+              </div>
+            </div>
+          `;
+        }
+      });
+
+      container.innerHTML = html || `<div class="col-span-full text-center py-6 text-slate-500 font-mono text-sm">No skills match query.</div>`;
+    }
+
+    // Render Education
+    function renderEducation() {
+      const container = document.getElementById("education-container");
+      container.innerHTML = portfolioData.education.map(edu => `
+        <div class="card-surface p-6 rounded-2xl space-y-2 ${edu.current ? 'border-blue-500/50' : ''}">
+          <div class="flex items-center justify-between">
+            <span class="text-xs font-mono text-blue-600 dark:text-blue-400">${edu.period}</span>
+            ${edu.current ? '<span class="px-2 py-0.5 rounded-full bg-emerald-500/10 text-emerald-600 dark:text-emerald-500 text-[10px] font-mono font-semibold">Ongoing</span>' : ''}
+          </div>
+          <h4 class="text-base font-bold text-slate-900 dark:text-white">${edu.degree}</h4>
+          <p class="text-xs text-slate-600 dark:text-slate-300">${edu.institution}</p>
+          ${edu.score ? `<p class="text-xs font-mono text-slate-900 dark:text-white font-semibold pt-1">${edu.score}</p>` : ''}
+        </div>
+      `).join('');
+    }
+
+    // Render Certifications
+    function renderCertifications() {
+      const container = document.getElementById("certifications-container");
+      container.innerHTML = portfolioData.certifications.map(cert => `
+        <div class="card-surface p-5 rounded-2xl space-y-2 flex flex-col justify-between">
+          <div>
+            <span class="text-[10px] font-mono text-blue-600 dark:text-blue-400 uppercase">${cert.issuer}</span>
+            <h4 class="text-sm font-bold text-slate-900 dark:text-white leading-snug mt-1">${cert.title}</h4>
+          </div>
+          <div class="flex items-center justify-between text-xs font-mono text-slate-500 pt-2 border-t border-slate-200 dark:border-slate-800">
+            <span>${cert.code || cert.year || 'Verified'}</span>
+            <span class="text-emerald-600 dark:text-emerald-500 font-semibold">${cert.status || 'Completed'}</span>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    // Render Leadership
+    function renderLeadership() {
+      const l = portfolioData.leadership;
+      const container = document.getElementById("leadership-container");
+      container.innerHTML = `
+        <div class="card-surface p-6 sm:p-8 rounded-2xl space-y-4">
+          <div>
+            <span class="text-xs font-mono text-blue-600 dark:text-blue-400">${l.period}</span>
+            <h4 class="text-xl font-bold text-slate-900 dark:text-white">${l.role} — ${l.organization}</h4>
+          </div>
+          <div class="space-y-2">
+            <h5 class="text-xs font-mono uppercase tracking-wider text-slate-500 font-semibold">Key Organized Events & Workshops</h5>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs text-slate-600 dark:text-slate-300">
+              ${l.events.map(ev => `<div class="flex items-center gap-2 card-surface p-2.5 rounded-xl"><span class="text-blue-500 font-bold">•</span><span>${ev}</span></div>`).join('')}
+            </div>
+          </div>
+        </div>
+      `;
+    }
+
+    // Contact Actions: copy email and briefly show a checkmark instead of an alert.
+    async function copyEmail() {
+      const email = document.getElementById("contact-email").innerText.trim();
+      const button = document.getElementById("copy-email-button");
+      const icon = document.getElementById("copy-email-icon");
+
+      try {
+        await navigator.clipboard.writeText(email);
+        icon.innerHTML = '<path d="M5 12.5 9.5 17 19 7.5" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>';
+        button.classList.add("text-emerald-600", "dark:text-emerald-400");
+        button.classList.remove("text-slate-600", "dark:text-slate-300");
+        button.setAttribute("aria-label", "Email copied");
+        button.setAttribute("title", "Email copied");
+        window.setTimeout(() => {
+          icon.innerHTML = '<rect x="9" y="9" width="13" height="13" rx="2" stroke-width="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1" stroke-width="2" stroke-linecap="round"/>';
+          button.classList.remove("text-emerald-600", "dark:text-emerald-400");
+          button.classList.add("text-slate-600", "dark:text-slate-300");
+          button.setAttribute("aria-label", "Copy email address");
+          button.setAttribute("title", "Copy email address");
+        }, 1800);
+      } catch (error) {
+        console.error("Could not copy email address:", error);
+      }
+    }
+
+  
+  </script>
+</body>
+</html>
